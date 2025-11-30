@@ -4,10 +4,10 @@ namespace PatientService.Service
 {
     public interface IPatientService
     {
-        Task<PatientResponseDto> CreatePatient(PatientCreateDto dto);
+        Task<PatientCreateDto> CreatePatient(PatientCreateDto dto);
         Task<PatientResponseDto> GetPatient(int id);
         Task<IEnumerable<PatientResponseDto>> GetAllPatients();
-        Task<PatientResponseDto> UpdatePatient(int id, PatientUpdateDto dto);
+        Task<PatientUpdateDto> UpdatePatient( PatientUpdateDto dto);
         Task DeletePatient(int id);
     }
 }
