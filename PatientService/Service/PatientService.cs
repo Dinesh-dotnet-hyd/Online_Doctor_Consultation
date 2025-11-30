@@ -1,4 +1,5 @@
-﻿using PatientService.DTOs;
+﻿using Microsoft.EntityFrameworkCore;
+using PatientService.DTOs;
 using PatientService.Models;
 using PatientService.Repositories;
 
@@ -13,11 +14,11 @@ namespace PatientService.Service
             _repo = repo;
         }
 
-        public async Task<PatientResponseDto> CreatePatient(PatientCreateDto dto)
+        public async Task<PatientCreateDto> CreatePatient(PatientCreateDto dto)
         {
-            var patient = new Patient
+            var patient = new PatientCreateDto
             {
-                UserId = dto.UserId,
+               
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Phone = dto.Phone,
@@ -33,7 +34,7 @@ namespace PatientService.Service
 
             var created = await _repo.CreateAsync(patient);
 
-            return ToDto(created);
+            return created;
         }
 
         public async Task DeletePatient(int id)
@@ -53,28 +54,81 @@ namespace PatientService.Service
             return patient == null ? null : ToDto(patient);
         }
 
-        public async Task<PatientResponseDto> UpdatePatient(int id, PatientUpdateDto dto)
+        //public async Task<PatientUpdateDto> UpdatePatient(int id, PatientUpdateDto dto)
+        //{
+        //    var patient = await _repo.GetByIdAsync(id);
+        //    if (patient == null) return null;
+
+        //    patient.Phone = dto.Phone;
+        //    patient.Email = dto.Email;
+        //    patient.FirstName = dto.FirstName;
+        //    patient.LastName = dto.LastName;
+        //    patient.PassHash = dto.PassHash;
+        //    patient.Image = null;
+        //    patient.MedicalHistory = dto.MedicalHistory;
+        //    patient.Allergies = dto.Allergies;
+        //    patient.BloodGroup = dto.BloodGroup;
+        //    //patient.InsuranceProvider = dto.InsuranceProvider;
+        //    //patient.InsuranceNumber = dto.InsuranceNumber;
+
+        //    // ------ FILE UPLOAD HANDLING ------
+        //    if (dto.Image != null && dto.Image.Length > 0)
+        //    {
+        //        string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/profilepics");
+
+        //        if (!Directory.Exists(uploadsFolder))
+        //            Directory.CreateDirectory(uploadsFolder);
+
+        //        string uniqueFileName = $"doctor_{patient.PatientId}_{Guid.NewGuid()}{Path.GetExtension(dto.Image.FileName)}";
+        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+        //        using (var stream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            await dto.Image.CopyToAsync(stream);
+        //        }
+
+        //        // Save only relative path to DB
+        //        patient.Image = $"images/profilepics/{uniqueFileName}";
+        //    }
+
+        //    //await _context.SaveChangesAsync();
+
+        //    // Return updated details + new image path
+        //    return new PatientUpdateDto
+        //    {
+        //        FirstName = dto.FirstName,
+        //        LastName = dto.LastName,
+        //        Email = dto.Email,
+
+        //        Phone = dto.Phone,
+        //        MedicalHistory= dto.MedicalHistory,
+        //        Allergies = dto.Allergies,
+        //        BloodGroup = dto.BloodGroup,
+
+        //        PassHash = dto.PassHash,
+        //        // NEW: full URL for frontend
+        //        Image = null
+        //    };
+
+
+        //    return await _repo.UpdateAsync(dto);
+        //}
+
+        public async Task<PatientUpdateDto> UpdatePatient( PatientUpdateDto dto)
         {
-            var patient = await _repo.GetByIdAsync(id);
-            if (patient == null) return null;
+            var updated = await _repo.UpdateAsync( dto);
+            if (updated == null) return null;
 
-            patient.Phone = dto.Phone;
-            patient.MedicalHistory = dto.MedicalHistory;
-            patient.Allergies = dto.Allergies;
-            patient.BloodGroup = dto.BloodGroup;
-            //patient.InsuranceProvider = dto.InsuranceProvider;
-            //patient.InsuranceNumber = dto.InsuranceNumber;
-
-            await _repo.UpdateAsync(patient);
-            return ToDto(patient);
+            return dto;
         }
+
 
         private PatientResponseDto ToDto(Patient p)
         {
             return new PatientResponseDto
             {
                 PatientId = p.PatientId,
-                UserId = p.UserId,
+               
                 FirstName = p.FirstName,
                 LastName = p.LastName,
                 Phone = p.Phone,
