@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClient", "HttpClient\Ht
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrescriptionService", "PrescriptionService\PrescriptionService.csproj", "{88180CC7-E01E-4783-9236-D7627081417D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "NotificationService\NotificationService.csproj", "{D1CD8676-03DD-4565-9BA2-718EF72F9F33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{88180CC7-E01E-4783-9236-D7627081417D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88180CC7-E01E-4783-9236-D7627081417D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88180CC7-E01E-4783-9236-D7627081417D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1CD8676-03DD-4565-9BA2-718EF72F9F33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1CD8676-03DD-4565-9BA2-718EF72F9F33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1CD8676-03DD-4565-9BA2-718EF72F9F33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1CD8676-03DD-4565-9BA2-718EF72F9F33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
