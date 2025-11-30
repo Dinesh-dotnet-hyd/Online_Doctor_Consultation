@@ -168,6 +168,30 @@
       ],
       "UpstreamPathTemplate": "/patients/{id}",
       "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointments/doctor/{doctorId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointments-service",
+          "Port": 5004
+        }
+      ],
+      "UpstreamPathTemplate": "/appointments/doctor/{doctorId}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/appointments/patient/{patientId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "appointments-service",
+          "Port": 5004
+        }
+      ],
+      "UpstreamPathTemplate": "/appointments/patient/{patientId}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
   ],
   "GlobalConfiguration": {
