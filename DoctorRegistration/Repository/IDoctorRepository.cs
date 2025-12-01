@@ -11,7 +11,7 @@ namespace DoctorRegistration.Repository
         public Task<Doctor> GetDoctorByIdAsync(int id);
         public Task<DoctorRegisterDto> RegisterDoctor(DoctorRegisterDto doctor);
 
-        public Task<bool> LoginDoctor(LoginDTO loginDTO);
+        public Task<Doctor> LoginDoctor(LoginDTO loginDTO);
         public Task<DoctorUpdateDto> UpdateDoctor(DoctorUpdateDto updateDTO);
 
     }

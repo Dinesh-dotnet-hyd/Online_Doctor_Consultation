@@ -1,4 +1,6 @@
-﻿using AppointementServiecs.Repository;
+﻿using AppointementServiecs.DTOs;
+using AppointementServiecs.Model;
+using AppointementServiecs.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,12 +8,18 @@ namespace AppointementServiecs.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AppointementController : ControllerBase
+    public class AppointmentController : ControllerBase
     {
         private readonly IAppointementRepository _repository;
-        public AppointementController(IAppointementRepository repository)
+        public AppointmentController(IAppointementRepository repository)
         {
             _repository = repository;
+        }
+        [HttpPost("CreateAppointment")]
+        public async Task<ActionResult<Appointment>> CreateAppointment(Appointment appointment)
+        {
+           await _repository.AddAsync(appointment);
+            return Ok(appointment);
         }
         // GET /api/appointments/doctor/12?date=2025-11-28&timezone=Asia/Kolkata
         [HttpGet("doctor/{doctorId}")]
@@ -29,5 +37,17 @@ namespace AppointementServiecs.Controllers
             var future = await _repository.GetPatientFutureAppointmentsAsync(patientId, page, pageSize);
             return Ok(new { past, future });
         }
+        [HttpPut("Update/{appointmentId}")]
+        public async Task<ActionResult<Appointment>> UpdateAppointmentAsync(int appointmentId, UpdateDto dto)
+        {
+            var appointment =await _repository.UpdateAppointmentAsync(appointmentId, dto);
+            return Ok(appointment);
+        }
+        [HttpGet("{appointmentId}")]
+        public async Task<ActionResult<Appointment>> GetByAppointmentId(int appointmentId)
+        {
+            return  await _repository.GetAppointmentById(appointmentId);
+        }
+
     }
 }

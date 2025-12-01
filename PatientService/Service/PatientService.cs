@@ -128,7 +128,8 @@ namespace PatientService.Service
             return new PatientResponseDto
             {
                 PatientId = p.PatientId,
-               
+                
+               Image=p.Image,
                 FirstName = p.FirstName,
                 LastName = p.LastName,
                 Phone = p.Phone,
@@ -139,6 +140,10 @@ namespace PatientService.Service
                 //InsuranceProvider = p.InsuranceProvider,
                 //InsuranceNumber = p.InsuranceNumber
             };
+        }
+        public async Task<Patient> LoginPatient(PatientLoginDto loginDto)
+        {
+            return await _repo.LoginPatient(loginDto);
         }
     }
 }

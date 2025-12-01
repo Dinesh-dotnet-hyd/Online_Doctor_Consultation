@@ -5,7 +5,7 @@
 namespace DoctorRegistration.Migrations
 {
     /// <inheritdoc />
-    public partial class DocDb : Migration
+    public partial class MG1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
