@@ -13,11 +13,12 @@ namespace DoctorRegistration.DTOs
         public string LastName { get; set; } = null!;
 
         [Required, MaxLength(150)]
+        [EmailAddress]
         public string Email { get; set; } = null!;
         public IFormFile? Image { get; set; }
 
         // Store hashed password (never plain)
-        [Required, MaxLength(300)]
+        [Required,MinLength(6), MaxLength(300)]
         public string Password { get; set; } = null!;
 
         [MaxLength(15)]

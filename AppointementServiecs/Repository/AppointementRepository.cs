@@ -1,4 +1,5 @@
-﻿using AppointementServiecs.Model;
+﻿using AppointementServiecs.DTOs;
+using AppointementServiecs.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace AppointementServiecs.Repository
@@ -17,6 +18,7 @@ namespace AppointementServiecs.Repository
                 appointment.AppointmentDateTime = appointment.AppointmentDateTime.ToUniversalTime();
 
             await _db.Appointments.AddAsync(appointment);
+            await SaveChangesAsync();
         }
 
         public async Task SaveChangesAsync() => await _db.SaveChangesAsync();
@@ -63,6 +65,23 @@ namespace AppointementServiecs.Repository
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+        }
+        public async Task<Appointment> UpdateAppointmentAsync(int appointmentId, UpdateDto updateDto)
+        {
+            var appoinment = _db.Appointments.FirstOrDefault(x => x.AppointmentId == appointmentId);
+            if (appoinment != null)
+            {
+                appoinment.AppointmentId = appointmentId;
+                appoinment.Status = updateDto.Status;
+                appoinment.Notes = updateDto.Notes; 
+            }
+            return appoinment;
+        }
+
+        public async Task<Appointment> GetAppointmentById(int appointmentId)
+        {
+            return _db.Appointments.FirstOrDefault(x => x.AppointmentId == appointmentId);
+
         }
     }
 }

@@ -128,7 +128,8 @@ namespace PatientService.Service
             return new PatientResponseDto
             {
                 PatientId = p.PatientId,
-               
+                
+               Image=p.Image,
                 FirstName = p.FirstName,
                 LastName = p.LastName,
                 Phone = p.Phone,
