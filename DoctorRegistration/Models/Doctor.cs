@@ -18,11 +18,11 @@ namespace DoctorRegistration.Model
         public string? Image { get; set; }
 
         [Required, MaxLength(150)]
-        public string Email { get; set; } = null!;
+        public string? Email { get; set; } = null!;
 
         // Store hashed password (never plain)
         [Required, MaxLength(300)]
-        public string Password { get; set; } = null!;
+        public string? Password { get; set; } = null!;
 
         [MaxLength(15)]
         public string? PhoneNo { get; set; }
