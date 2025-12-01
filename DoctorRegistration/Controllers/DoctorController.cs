@@ -1,7 +1,9 @@
-﻿using DoctorRegistration.Model;
+﻿using DoctorRegistration.DTOs;
+using DoctorRegistration.Model;
 using DoctorRegistration.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.WebSockets;
 using System.Numerics;
 
 namespace DoctorRegistration.Controllers
@@ -40,10 +42,10 @@ namespace DoctorRegistration.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterDoctor([FromBody] Doctor doctor)
+        public async Task<ActionResult<DoctorRegisterDto>> RegisterDoctor([FromBody] DoctorRegisterDto doctor)
         {
             await _repo.RegisterDoctor(doctor);
-            return Ok();
+            return Ok(doctor);
         }
 
         [HttpGet("login")]
@@ -56,6 +58,23 @@ namespace DoctorRegistration.Controllers
 
             return Ok(true);
         }
+        //[HttpPut("Update")]
+        //public async Task<ActionResult<DoctorUpdateDto>> DoctorUpdate(DoctorUpdateDto doctorUpdate)
+        //{
+        //    var updatedDoc = await _repo.UpdateDoctor(doctorUpdate);
+        //    return Ok(updatedDoc);
+        //}
+        [HttpPut("update")]
+        public async Task<ActionResult> DoctorUpdate([FromForm] DoctorUpdateDto dto)
+        {
+            var updated = await _repo.UpdateDoctor(dto);
+            if (updated == null)
+                return NotFound();
+
+            return Ok(updated);
+        }
+
+
     }
 
 }

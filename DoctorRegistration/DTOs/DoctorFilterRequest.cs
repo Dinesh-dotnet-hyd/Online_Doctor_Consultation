@@ -1,4 +1,4 @@
-﻿namespace DoctorRegistration.Model
+﻿namespace DoctorRegistration.DTOs
 {
     public class DoctorFilterRequest
     {

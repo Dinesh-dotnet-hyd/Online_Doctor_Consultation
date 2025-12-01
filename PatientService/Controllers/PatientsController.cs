@@ -39,9 +39,9 @@ namespace PatientService.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] PatientUpdateDto dto)
+        public async Task<IActionResult> Update(int id, [FromForm] PatientUpdateDto dto)
         {
-            var result = await _service.UpdatePatient(id, dto);
+            var result = await _service.UpdatePatient( dto);
             return Ok(result);
         }
 
