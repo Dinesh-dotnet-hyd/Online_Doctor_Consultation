@@ -12,8 +12,8 @@ using PatientService.Data;
 namespace PatientService.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251127105523_PatientDb")]
-    partial class PatientDb
+    [Migration("20251130150829_patientnewodc")]
+    partial class patientnewodc
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

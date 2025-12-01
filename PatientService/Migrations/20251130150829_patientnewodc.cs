@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PatientService.Migrations
 {
     /// <inheritdoc />
-    public partial class PatientDb : Migration
+    public partial class patientnewodc : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

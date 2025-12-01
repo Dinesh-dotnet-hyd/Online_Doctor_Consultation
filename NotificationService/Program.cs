@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using NotificationService.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +11,26 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+var MyCorsPolicy = "MyCorsPolicy";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(MyCorsPolicy, policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")  // your frontend
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
+builder.Services.AddControllers();
+
+
 var app = builder.Build();
+app.UseCors(MyCorsPolicy);   // <--- MUST be here before everything else
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

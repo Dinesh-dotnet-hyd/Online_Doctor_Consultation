@@ -12,7 +12,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("myconn")));
 builder.Services.AddScoped<IAppointementRepository, AppointmentRepository>();
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowAnyOrigin();
+        });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,7 +30,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors("AllowAll");
+    
 app.UseAuthorization();
 
 app.MapControllers();

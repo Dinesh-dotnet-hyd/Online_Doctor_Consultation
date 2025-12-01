@@ -88,6 +88,7 @@ namespace PatientService.Repositories
             patient.FirstName = dto.FirstName;
             patient.LastName = dto.LastName;
             patient.Email = dto.Email;
+            //patient.Image = dto.Image;
             patient.Phone = dto.Phone;
             patient.BloodGroup = dto.BloodGroup;
             patient.Allergies = dto.Allergies;
