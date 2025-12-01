@@ -141,5 +141,9 @@ namespace PatientService.Service
                 //InsuranceNumber = p.InsuranceNumber
             };
         }
+        public async Task<Patient> LoginPatient(PatientLoginDto loginDto)
+        {
+            return await _repo.LoginPatient(loginDto);
+        }
     }
 }

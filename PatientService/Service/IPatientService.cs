@@ -1,4 +1,5 @@
 ﻿using PatientService.DTOs;
+using PatientService.Models;
 
 namespace PatientService.Service
 {
@@ -9,5 +10,6 @@ namespace PatientService.Service
         Task<IEnumerable<PatientResponseDto>> GetAllPatients();
         Task<PatientUpdateDto> UpdatePatient( PatientUpdateDto dto);
         Task DeletePatient(int id);
+        Task<Patient> LoginPatient(PatientLoginDto loginDto);
     }
 }
