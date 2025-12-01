@@ -52,18 +52,19 @@ namespace DoctorRegistration.Repository
             return (doc);
         }
 
-        public async Task<bool> LoginDoctor(LoginDTO loginDTO)
+        public async Task<Doctor> LoginDoctor(LoginDTO loginDTO)
         {
             var dr = await _context.Doctors.FirstOrDefaultAsync(x => x.Email == loginDTO.Email);
 
             if (dr == null)
-                return false;
+                return null;
 
-            if (dr.Password == loginDTO.Password)
-                return true;
+            if (dr.Password != loginDTO.Password)
+                return null;
 
-            return false;
+            return dr; // return doctor object
         }
+
 
 
         //public async Task RegisterDoctor(Doctor doctor)

@@ -1,10 +1,16 @@
 ﻿using DoctorRegistration.DTOs;
 using DoctorRegistration.Model;
 using DoctorRegistration.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net.WebSockets;
 using System.Numerics;
+using System.Security.Claims;
+using System.Text;
+
 
 namespace DoctorRegistration.Controllers
 {
@@ -13,11 +19,15 @@ namespace DoctorRegistration.Controllers
     public class DoctorController : ControllerBase
     {
         private readonly IDoctorRepository _repo;
+        private readonly IConfiguration _configuration;
 
-        public DoctorController(IDoctorRepository repo)
+
+        public DoctorController(IDoctorRepository repo, IConfiguration configuration)
         {
             _repo = repo;
+            _configuration = configuration;   // store configuration here
         }
+
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Doctor>>> GetAll()
@@ -47,17 +57,49 @@ namespace DoctorRegistration.Controllers
             await _repo.RegisterDoctor(doctor);
             return Ok(doctor);
         }
-
-        [HttpGet("login")]
-        public async Task<ActionResult<bool>> DoctorLogin([FromQuery] LoginDTO login)
+        [Authorize]          // ONLY this API needs JWT
+        [HttpGet("profile")]
+        public IActionResult GetProfile()
         {
-            var flag = await _repo.LoginDoctor(login);
-
-            if (!flag)
-                return Unauthorized(false);
-
-            return Ok(true);
+            return Ok("Doctor Profile Data");
         }
+
+
+        [HttpPost("login")]
+        public async Task<ActionResult> DoctorLogin([FromBody] LoginDTO login)
+        {
+            var doctor = await _repo.LoginDoctor(login);
+
+            if (doctor == null)
+                return Unauthorized("Invalid email or password");
+
+            // JWT claims
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, doctor.Email),
+                new Claim("DoctorId", doctor.DoctorId.ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: creds
+            );
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return Ok(new
+            {
+                token = jwt,
+                expires = token.ValidTo
+            });
+        }
+
         //[HttpPut("Update")]
         //public async Task<ActionResult<DoctorUpdateDto>> DoctorUpdate(DoctorUpdateDto doctorUpdate)
         //{
