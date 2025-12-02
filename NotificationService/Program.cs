@@ -11,26 +11,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-var MyCorsPolicy = "MyCorsPolicy";
-
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(MyCorsPolicy, policy =>
-    {
-        policy
-            .WithOrigins("http://localhost:5173")  // your frontend
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
-    });
+    options.AddPolicy("AllowAll", policy =>
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod());
 });
 
 builder.Services.AddControllers();
 
 
 var app = builder.Build();
-app.UseCors(MyCorsPolicy);   // <--- MUST be here before everything else
+  // <--- MUST be here before everything else
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -40,6 +33,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

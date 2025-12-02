@@ -48,7 +48,7 @@ namespace PatientService.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] PatientUpdateDto dto)
         {
-            var result = await _service.UpdatePatient( dto);
+            var result = await _service.UpdatePatient( id,dto);
             return Ok(result);
         }
 
@@ -74,12 +74,12 @@ namespace PatientService.Controllers
             if (patient == null)
                 return Unauthorized("Invalid email or password");
 
-            // JWT claims (minimal)
+            // JWT claims
             var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, patient.Email),
-                new Claim("PatientId", patient.PatientId.ToString())
-            };
+    {
+        new Claim(ClaimTypes.Name, patient.Email),
+        new Claim("PatientId", patient.PatientId.ToString())
+    };
 
             // JWT key
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -96,13 +96,15 @@ namespace PatientService.Controllers
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-            // Return token only (no need for FirstName/LastName)
+            // Return token + patientId
             return Ok(new
             {
                 token = jwt,
+                patientId = patient.PatientId,
                 expires = token.ValidTo
             });
         }
+
 
     }
 }

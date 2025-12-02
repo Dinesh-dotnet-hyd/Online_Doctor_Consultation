@@ -79,9 +79,9 @@ namespace PatientService.Repositories
             return dto;
         }
 
-        public async Task<PatientUpdateDto> UpdateAsync( PatientUpdateDto dto)
+        public async Task<PatientUpdateDto> UpdateAsync( int Id,PatientUpdateDto dto)
         {
-            var patient = await _context.patients.FirstOrDefaultAsync(x => x.Email==dto.Email);
+            var patient = await _context.patients.FirstOrDefaultAsync(x => x.PatientId==Id);
             if (patient == null)
                 return null;
 

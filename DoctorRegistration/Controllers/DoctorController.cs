@@ -75,10 +75,10 @@ namespace DoctorRegistration.Controllers
 
             // JWT claims
             var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, doctor.Email),
-                new Claim("DoctorId", doctor.DoctorId.ToString())
-            };
+    {
+        new Claim(ClaimTypes.Name, doctor.Email),
+        new Claim("DoctorId", doctor.DoctorId.ToString())
+    };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -96,9 +96,11 @@ namespace DoctorRegistration.Controllers
             return Ok(new
             {
                 token = jwt,
-                expires = token.ValidTo
+                expires = token.ValidTo,
+                doctorId = doctor.DoctorId   // 🔥 Added doctorId
             });
         }
+
 
         //[HttpPut("Update")]
         //public async Task<ActionResult<DoctorUpdateDto>> DoctorUpdate(DoctorUpdateDto doctorUpdate)

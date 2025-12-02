@@ -114,9 +114,9 @@ namespace PatientService.Service
         //    return await _repo.UpdateAsync(dto);
         //}
 
-        public async Task<PatientUpdateDto> UpdatePatient( PatientUpdateDto dto)
+        public async Task<PatientUpdateDto> UpdatePatient(int Id, PatientUpdateDto dto)
         {
-            var updated = await _repo.UpdateAsync( dto);
+            var updated = await _repo.UpdateAsync( Id,dto);
             if (updated == null) return null;
 
             return dto;
@@ -129,7 +129,7 @@ namespace PatientService.Service
             {
                 PatientId = p.PatientId,
                 
-               Image=p.Image,
+               
                 FirstName = p.FirstName,
                 LastName = p.LastName,
                 Phone = p.Phone,

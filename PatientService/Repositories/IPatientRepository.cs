@@ -8,7 +8,7 @@ namespace PatientService.Repositories
         Task<Patient> GetByIdAsync(int id);
         Task<IEnumerable<Patient>> GetAllAsync();
         Task<PatientCreateDto> CreateAsync(PatientCreateDto patient);
-        Task<PatientUpdateDto> UpdateAsync(PatientUpdateDto patient);
+        Task<PatientUpdateDto> UpdateAsync(int Id,PatientUpdateDto patient);
         Task DeleteAsync(int id);
         Task<Patient> LoginPatient(PatientLoginDto patientLoginDto);
         //Task<PatientCreateDto> CreatePatient(PatientCreateDto patient);

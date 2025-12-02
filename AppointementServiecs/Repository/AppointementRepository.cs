@@ -58,9 +58,9 @@ namespace AppointementServiecs.Repository
             var nowUtc = DateTime.UtcNow;
             page = Math.Max(1, page);
             pageSize = Math.Clamp(pageSize, 1, 200);
-
+            //&& a.Status == "Scheduled"
             return await _db.Appointments
-                .Where(a => a.PatientId == patientId && a.AppointmentDateTime >= nowUtc && a.Status == "Scheduled")
+                .Where(a => a.PatientId == patientId && a.AppointmentDateTime >= nowUtc )
                 .OrderBy(a => a.AppointmentDateTime)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
@@ -75,6 +75,7 @@ namespace AppointementServiecs.Repository
                 appoinment.Status = updateDto.Status;
                 appoinment.Notes = updateDto.Notes; 
             }
+            await SaveChangesAsync();
             return appoinment;
         }
 

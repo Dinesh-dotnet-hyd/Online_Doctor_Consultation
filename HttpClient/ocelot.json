@@ -1,6 +1,63 @@
 {
   "Routes": [
     {
+      "DownstreamPathTemplate": "/api/Appointement/doctor/{doctorId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+      "UpstreamPathTemplate": "/appointments/doctor/{doctorId}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Appointment/Update/{appointmentId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+      "UpstreamPathTemplate": "/appointments/update/{appointmentId}",
+      "UpstreamHttpMethod": [
+        "PUT"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Appointment/CreateAppointment",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+      "UpstreamPathTemplate": "/appointments/create",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Appointment/patient/{patientId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5004
+        }
+      ],
+      "UpstreamPathTemplate": "/appointments/patient/{patientId}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+
+    {
       "DownstreamPathTemplate": "/api/doctors",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -9,8 +66,10 @@
           "Port": 5108
         }
       ],
-      "UpstreamPathTemplate": "/doctor",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamPathTemplate": "/doctors",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
       "DownstreamPathTemplate": "/api/doctors/filter",
@@ -21,8 +80,10 @@
           "Port": 5108
         }
       ],
-      "UpstreamPathTemplate": "/doctor/filter",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamPathTemplate": "/doctors/filter",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
       "DownstreamPathTemplate": "/api/doctors/{id}",
@@ -33,20 +94,10 @@
           "Port": 5108
         }
       ],
-      "UpstreamPathTemplate": "/doctor/{id}",
-      "UpstreamHttpMethod": [ "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/doctors/login",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5108
-        }
-      ],
-      "UpstreamPathTemplate": "/doctor/login",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamPathTemplate": "/doctors/{id}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
       "DownstreamPathTemplate": "/api/doctors",
@@ -57,12 +108,42 @@
           "Port": 5108
         }
       ],
-      "UpstreamPathTemplate": "/doctor",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamPathTemplate": "/doctors",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/doctors/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5108
+        }
+      ],
+      "UpstreamPathTemplate": "/doctors/login",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/doctors/update",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5108
+        }
+      ],
+      "UpstreamPathTemplate": "/doctors/update",
+      "UpstreamHttpMethod": [
+        "PUT"
+      ]
     },
 
     {
-      "DownstreamPathTemplate": "/api/doctorslot",
+      "DownstreamPathTemplate": "/api/DoctorSlots",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -70,11 +151,13 @@
           "Port": 5171
         }
       ],
-      "UpstreamPathTemplate": "/doctorslot",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamPathTemplate": "/doctorslots",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
-      "DownstreamPathTemplate": "/api/doctorslot/range",
+      "DownstreamPathTemplate": "/api/DoctorSlots/range",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -82,11 +165,13 @@
           "Port": 5171
         }
       ],
-      "UpstreamPathTemplate": "/doctorslot/range",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamPathTemplate": "/doctorslots/range",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
-      "DownstreamPathTemplate": "/api/doctorslot/book",
+      "DownstreamPathTemplate": "/api/DoctorSlots/book",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -94,11 +179,13 @@
           "Port": 5171
         }
       ],
-      "UpstreamPathTemplate": "/doctorslot/book",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamPathTemplate": "/doctorslots/book",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
     },
     {
-      "DownstreamPathTemplate": "/api/doctorslot/available",
+      "DownstreamPathTemplate": "/api/DoctorSlots/available",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -106,11 +193,29 @@
           "Port": 5171
         }
       ],
-      "UpstreamPathTemplate": "/doctorslot/available",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamPathTemplate": "/doctorslots/available",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
+
     {
-      "DownstreamPathTemplate": "/api/patients",
+      "DownstreamPathTemplate": "/api/Notification/send-email",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7096
+        }
+      ],
+      "UpstreamPathTemplate": "/notification/send-email",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Patients",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -119,10 +224,12 @@
         }
       ],
       "UpstreamPathTemplate": "/patients",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
     },
     {
-      "DownstreamPathTemplate": "/api/patients/{id}",
+      "DownstreamPathTemplate": "/api/Patients/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -131,10 +238,26 @@
         }
       ],
       "UpstreamPathTemplate": "/patients/{id}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
-      "DownstreamPathTemplate": "/api/patients",
+      "DownstreamPathTemplate": "/api/Patients/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5138
+        }
+      ],
+      "UpstreamPathTemplate": "/patients/login",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Patients",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -143,10 +266,12 @@
         }
       ],
       "UpstreamPathTemplate": "/patients",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
-      "DownstreamPathTemplate": "/api/patients/{id}",
+      "DownstreamPathTemplate": "/api/Patients/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -155,10 +280,12 @@
         }
       ],
       "UpstreamPathTemplate": "/patients/{id}",
-      "UpstreamHttpMethod": [ "PUT" ]
+      "UpstreamHttpMethod": [
+        "PUT"
+      ]
     },
     {
-      "DownstreamPathTemplate": "/api/patients/{id}",
+      "DownstreamPathTemplate": "/api/Patients/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -167,34 +294,269 @@
         }
       ],
       "UpstreamPathTemplate": "/patients/{id}",
-      "UpstreamHttpMethod": [ "DELETE" ]
+      "UpstreamHttpMethod": [
+        "DELETE"
+      ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/Prescription",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7107
+        }
+      ],
+      "UpstreamPathTemplate": "/prescriptions",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
     },
     {
-      "DownstreamPathTemplate": "/api/appointments/doctor/{doctorId}",
+      "DownstreamPathTemplate": "/api/Prescription/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "appointments-service",
-          "Port": 5004
+          "Host": "localhost",
+          "Port": 5072
         }
       ],
-      "UpstreamPathTemplate": "/appointments/doctor/{doctorId}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/prescriptions/{id}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     },
     {
-      "DownstreamPathTemplate": "/api/appointments/patient/{patientId}",
+      "DownstreamPathTemplate": "/api/Prescription/patient/{patientId}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "appointments-service",
-          "Port": 5004
+          "Host": "localhost",
+          "Port": 5072
         }
       ],
-      "UpstreamPathTemplate": "/appointments/patient/{patientId}",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/prescriptions/patient/{patientId}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Prescription/doctor/{doctorId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5072
+        }
+      ],
+      "UpstreamPathTemplate": "/prescriptions/doctor/{doctorId}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
     }
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:5229"
   }
 }
+//{
+//  "Routes": [
+//    {
+//      "DownstreamPathTemplate": "/api/doctors",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5108
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/doctor",
+//      "UpstreamHttpMethod": [ "GET" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/doctors/filter",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5108
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/doctor/filter",
+//      "UpstreamHttpMethod": [ "GET" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/doctors/{id}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5108
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/doctor/{id}",
+//      "UpstreamHttpMethod": [ "GET" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/doctors/login",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5108
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/doctor/login",
+//      "UpstreamHttpMethod": [ "GET" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/doctors",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5108
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/doctor",
+//      "UpstreamHttpMethod": [ "POST" ]
+//    },
+
+//    {
+//      "DownstreamPathTemplate": "/api/doctorslot",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5171
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/doctorslot",
+//      "UpstreamHttpMethod": [ "GET" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/doctorslot/range",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5171
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/doctorslot/range",
+//      "UpstreamHttpMethod": [ "GET" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/doctorslot/book",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5171
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/doctorslot/book",
+//      "UpstreamHttpMethod": [ "POST" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/doctorslot/available",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5171
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/doctorslot/available",
+//      "UpstreamHttpMethod": [ "GET" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/patients",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5138
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/patients",
+//      "UpstreamHttpMethod": [ "POST" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/patients/{id}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5138
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/patients/{id}",
+//      "UpstreamHttpMethod": [ "GET" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/patients",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5138
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/patients",
+//      "UpstreamHttpMethod": [ "GET" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/patients/{id}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5138
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/patients/{id}",
+//      "UpstreamHttpMethod": [ "PUT" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/patients/{id}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "localhost",
+//          "Port": 5138
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/patients/{id}",
+//      "UpstreamHttpMethod": [ "DELETE" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/appointments/doctor/{doctorId}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "appointments-service",
+//          "Port": 5004
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/appointments/doctor/{doctorId}",
+//      "UpstreamHttpMethod": [ "Get" ]
+//    },
+//    {
+//      "DownstreamPathTemplate": "/api/appointments/patient/{patientId}",
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "appointments-service",
+//          "Port": 5004
+//        }
+//      ],
+//      "UpstreamPathTemplate": "/appointments/patient/{patientId}",
+//      "UpstreamHttpMethod": [ "Get" ]
+//    }
+//  ],
+//  "GlobalConfiguration": {
+//    "BaseUrl": "http://localhost:5229"
+//  }
+//}

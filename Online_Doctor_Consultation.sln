@@ -14,7 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrescriptionService", "PrescriptionService\PrescriptionService.csproj", "{88180CC7-E01E-4783-9236-D7627081417D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "NotificationService\NotificationService.csproj", "{D1CD8676-03DD-4565-9BA2-718EF72F9F33}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminServices", "AdminServices\AdminServices.csproj", "{4E6009D9-C1AE-4D61-B4C4-8356C9A045A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminServices", "AdminServices\AdminServices.csproj", "{4E6009D9-C1AE-4D61-B4C4-8356C9A045A2}"
 EndProject
