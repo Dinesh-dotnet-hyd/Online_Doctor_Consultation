@@ -128,18 +128,11 @@ namespace PatientService.Repositories
             }
         }
 
-        public async Task<bool> LoginPatient(PatientLoginDto patientLoginDto)
+        public async Task<Patient> LoginPatient(PatientLoginDto patientLoginDto)
         {
             var pat = await _context.patients.FirstOrDefaultAsync(x => x.Email == patientLoginDto.Email);
-            if (pat == null)
-            {
-                return false;
-            }
-            if (pat.PassHash == patientLoginDto.Password)
-            {
-                return true;
-            }
-            return false;
+           
+            return pat;
         }
     }
 }

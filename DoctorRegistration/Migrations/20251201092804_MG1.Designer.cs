@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorRegistration.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251127103253_DocDb")]
-    partial class DocDb
+    [Migration("20251201092804_MG1")]
+    partial class MG1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
